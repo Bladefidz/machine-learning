@@ -1,3 +1,9 @@
 [submodule "fastai/fastai"]
 	path = fastai/fastai
 	url = https://github.com/fastai/fastai.git
+[submodule "udacity/deep-learning/fast-style-transfer"]
+	path = udacity/deep-learning/fast-style-transfer
+	url = https://github.com/lengstrom/fast-style-transfer.git
+[submodule "udacity/deep-learning/DeepLearningFlappyBird"]
+	path = udacity/deep-learning/DeepLearningFlappyBird
+	url = https://github.com/yenchenlin/DeepLearningFlappyBird

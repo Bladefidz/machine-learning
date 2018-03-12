@@ -34,6 +34,8 @@ y_pred = predict(classifier, newdata = test_set[-3])
 cm = table(test_set[, 3], y_pred)
 
 # Visualising the Training set results
+# install.packages('kernlab')
+# library(kernlab)
 library(ElemStatLearn)
 set = training_set
 X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)

@@ -23,6 +23,7 @@ X_test = sc.transform(X_test)
 # Fitting Kernel SVM to the Training set
 from sklearn.svm import SVC
 classifier = SVC(kernel = 'rbf', random_state = 0)
+#classifier = SVC(kernel = 'poly', degree = 6, random_state = 0)
 classifier.fit(X_train, y_train)
 
 # Predicting the Test set results

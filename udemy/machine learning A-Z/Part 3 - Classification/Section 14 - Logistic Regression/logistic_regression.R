@@ -32,6 +32,7 @@ y_pred = ifelse(prob_pred > 0.5, 1, 0)
 cm = table(test_set[, 3], y_pred > 0.5)
 
 # Visualising the Training set results
+# install.packages('ElemStatLearn')
 library(ElemStatLearn)
 set = training_set
 X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)

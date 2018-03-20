@@ -14,7 +14,8 @@ y = dataset.iloc[:, 4].values
 from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
 
-# Feature Scaling
+# Feature Scaling for high definition plotting
+# But can be removed if we only want to plot original curve
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)

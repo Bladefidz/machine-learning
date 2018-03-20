@@ -15,7 +15,8 @@ split = sample.split(dataset$Purchased, SplitRatio = 0.75)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
 
-# Feature Scaling
+# Feature Scaling for high definition plotting
+# But can be removed if we only want to plot original curve
 training_set[-3] = scale(training_set[-3])
 test_set[-3] = scale(test_set[-3])
 
@@ -38,6 +39,7 @@ X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
 X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
 grid_set = expand.grid(X1, X2)
 colnames(grid_set) = c('Age', 'EstimatedSalary')
+# You must added argument type='class' for this case
 y_grid = predict(classifier, newdata = grid_set, type = 'class')
 plot(set[, -3],
      main = 'Decision Tree Classification (Training set)',
@@ -54,6 +56,7 @@ X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
 X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
 grid_set = expand.grid(X1, X2)
 colnames(grid_set) = c('Age', 'EstimatedSalary')
+# You must added argument type='class' for this case
 y_grid = predict(classifier, newdata = grid_set, type = 'class')
 plot(set[, -3], main = 'Decision Tree Classification (Test set)',
      xlab = 'Age', ylab = 'Estimated Salary',
@@ -63,5 +66,9 @@ points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
 points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
 
 # Plotting the tree
+# install.packages('rattle')
+library(rpart.plot)
 plot(classifier)
 text(classifier)
+prp(classifier)
+prp(classifier, varlen = 3)

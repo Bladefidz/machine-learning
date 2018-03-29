@@ -15,12 +15,13 @@ nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 corpus = []
+stopwordSet = set(stopwords.words('english'))
 for i in range(0, 1000):
-    review = re.sub('[^a-zA-Z]', ' ', dataset['Review'][i])
+    review = re.sub('[^a-zA-Z]', ' ', dataset['Review'][i])  # Change non letter character to space
     review = review.lower()
     review = review.split()
     ps = PorterStemmer()
-    review = [ps.stem(word) for word in review if not word in set(stopwords.words('english'))]
+    review = [ps.stem(word) for word in review if not word in stopwordSet]
     review = ' '.join(review)
     corpus.append(review)
 
@@ -30,9 +31,20 @@ cv = CountVectorizer(max_features = 1500)
 X = cv.fit_transform(corpus).toarray()
 y = dataset.iloc[:, 1].values
 
+# # Inspect x and y
+# print(X)
+# print(y)
+
 # Splitting the dataset into the Training set and Test set
 from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.20, random_state=0)  # X and y already scalled by CountVectorizer
+
+# Inspect each splitted data
+# print(X_train)
+# print(X_test)
+# print(y_train)
+# print(y_test)
 
 # Fitting Naive Bayes to the Training set
 from sklearn.naive_bayes import GaussianNB

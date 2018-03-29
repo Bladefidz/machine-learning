@@ -25,7 +25,7 @@ library(randomForest)
 set.seed(123)
 classifier = randomForest(x = training_set[-3],
                           y = training_set$Purchased,
-                          ntree = 500)
+                          ntree = 10)
 
 # Predicting the Test set results
 y_pred = predict(classifier, newdata = test_set[-3])

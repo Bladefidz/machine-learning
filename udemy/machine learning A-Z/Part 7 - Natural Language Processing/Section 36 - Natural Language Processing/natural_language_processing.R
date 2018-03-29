@@ -22,10 +22,6 @@ dtm = removeSparseTerms(dtm, 0.999)
 dataset = as.data.frame(as.matrix(dtm))
 dataset$Liked = dataset_original$Liked
 
-# Importing the dataset
-dataset = read.csv('Social_Network_Ads.csv')
-dataset = dataset[3:5]
-
 # Encoding the target feature as factor
 dataset$Liked = factor(dataset$Liked, levels = c(0, 1))
 
@@ -48,4 +44,13 @@ classifier = randomForest(x = training_set[-692],
 y_pred = predict(classifier, newdata = test_set[-692])
 
 # Making the Confusion Matrix
-cm = table(test_set[, 692], y_pred)
+# cm = table(test_set[, 692], y_pred)
+
+# Evaluate model prediction error using accuracy, precision-recall and F1 score
+y_test_numeric = as.numeric(test_set$Liked == 1)
+y_pred_numeric = as.numeric(y_pred == 1)
+tp = sum(y_test_numeric & y_pred_numeric)
+accuracy = sum(!(xor(y_test_numeric, y_pred_numeric))) / length(y_pred_numeric)
+precision = tp / sum(y_pred_numeric)
+recall = tp / sum(y_test_numeric)
+f1_score = ifelse(precision + recall == 0, 0, 2 * precision * recall / (precision + recall))

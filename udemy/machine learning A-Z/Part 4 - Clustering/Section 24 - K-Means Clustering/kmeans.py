@@ -26,7 +26,7 @@ y_train = sc_y.fit_transform(y_train)"""
 from sklearn.cluster import KMeans
 wcss = []
 for i in range(1, 11):
-    kmeans = KMeans(n_clusters = i, init = 'k-means++', random_state = 42)
+    kmeans = KMeans(n_clusters = i, init = 'k-means++', random_state = 0)
     kmeans.fit(X)
     wcss.append(kmeans.inertia_)
 plt.plot(range(1, 11), wcss)
@@ -36,7 +36,7 @@ plt.ylabel('WCSS')
 plt.show()
 
 # Fitting K-Means to the dataset
-kmeans = KMeans(n_clusters = 5, init = 'k-means++', random_state = 42)
+kmeans = KMeans(n_clusters = 5, init = 'k-means++', random_state = 0)
 y_kmeans = kmeans.fit_predict(X)
 
 # Visualising the clusters

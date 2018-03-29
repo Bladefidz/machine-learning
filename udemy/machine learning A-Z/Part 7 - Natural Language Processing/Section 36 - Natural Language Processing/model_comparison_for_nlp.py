@@ -138,7 +138,21 @@ df = pd.DataFrame(data=modelMetrics,
 df.to_csv('confusion-matrix.csv', sep=',')
 
 # Plot the accuracy, precission, recall, and f1 score for each model
-df.plot(kind='bar',
-        title='Comparisson of Classification Model Performances\nin Binary Sentiment Analysis (Like or Dislike)',
-        rot=0)
+df.plot(kind='bar', colormap='Greys', grid=True, rot=0)
+plt.style.use('ggplot')
+plt.legend(loc='upper center', bbox_to_anchor=(
+    0.5, -0.05), shadow=True, ncol=numModels)
+f = plt.figure(1)
+extra_args = dict(family='serif', ha='center',
+                  va='top', transform=f.transFigure)
+f.text(.5, .99,
+       'Comparisson of Classification Model Performances in Binary Sentiment Analysis (Like or Dislike)',
+       size=12, **extra_args)
+f.text(.5, .96,
+       'Using small dataset contains 1000 user reviews with like/dislike written in English.',
+       size=9, **extra_args)  # Subtitle
+extra_args.update(ha='left', va='bottom', size=10, ma='right')
+f.text(0.65, 0.0,
+       'Connect with me at: linkedin.com/in/hafidz-jazuli-luthfi', **extra_args)  # Caption
+f.canvas.draw()
 plt.show()

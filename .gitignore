@@ -105,3 +105,6 @@ ENV/
 
 # itelij idea
 .idea/
+
+# Dolphin
+.directory

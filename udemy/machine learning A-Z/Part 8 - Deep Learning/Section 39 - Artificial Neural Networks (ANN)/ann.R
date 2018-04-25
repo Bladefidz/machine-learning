@@ -25,6 +25,7 @@ training_set[-11] = scale(training_set[-11])
 test_set[-11] = scale(test_set[-11])
 
 # Fitting ANN to the Training set
+# install.packages('RCurl')
 # install.packages('h2o')
 library(h2o)
 h2o.init(nthreads = -1)
@@ -43,4 +44,4 @@ y_pred = as.vector(y_pred)
 # Making the Confusion Matrix
 cm = table(test_set[, 11], y_pred)
 
-# h2o.shutdown()
+h2o.shutdown()

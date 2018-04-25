@@ -50,6 +50,11 @@ grid_search = GridSearchCV(estimator = classifier,
 grid_search = grid_search.fit(X_train, y_train)
 best_accuracy = grid_search.best_score_
 best_parameters = grid_search.best_params_
+best_estimator = grid_search.best_estimator_
+
+# Fit with best_estimator
+classifier = best_estimator
+classifier.fit(X_train, y_train)
 
 # Visualising the Training set results
 from matplotlib.colors import ListedColormap

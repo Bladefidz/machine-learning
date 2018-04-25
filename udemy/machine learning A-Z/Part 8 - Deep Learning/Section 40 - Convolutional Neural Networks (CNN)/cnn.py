@@ -62,8 +62,16 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
                                             batch_size = 32,
                                             class_mode = 'binary')
 
+# Use population data steps_per_epoch = population
 classifier.fit_generator(training_set,
-                         samples_per_epoch = 8000,
+                         steps_per_epoch = 8000,
                          nb_epoch = 25,
                          validation_data = test_set,
-                         nb_val_samples = 2000)
+                         validation_steps = 2000)
+
+## Use sample data steps_per_epoch = population/batch_size
+#classifier.fit_generator(training_set,
+#                         steps_per_epoch = 250,
+#                         nb_epoch = 25,
+#                         validation_data = test_set,
+#                         validation_steps = 4)

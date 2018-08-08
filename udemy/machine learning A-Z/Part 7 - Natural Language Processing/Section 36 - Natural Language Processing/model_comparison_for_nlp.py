@@ -40,10 +40,9 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.20, random_state=0)  # X and y already scalled by CountVectorizer
 
 # Prepare plot variables
-numModels = 6
 numMetrics = 4
 models = ['Naive Bayes', 'Logistic Regression', 'K-NN', 'Linear SVM', 'CART', 'Random Forest']
-modelMetrics = np.zeros([numMetrics, numModels])  # accuracy, precission, recall, f1
+modelMetrics = np.zeros([numMetrics, len(models)])  # accuracy, precission, recall, f1
 
 
 # Fitting Naive Bayes to the Training set
@@ -141,7 +140,7 @@ df.to_csv('confusion-matrix.csv', sep=',')
 df.plot(kind='bar', colormap='Greys', grid=True, rot=0)
 plt.style.use('ggplot')
 plt.legend(loc='upper center', bbox_to_anchor=(
-    0.5, -0.05), shadow=True, ncol=numModels)
+    0.5, -0.05), shadow=True, ncol=len(models))
 f = plt.figure(1)
 extra_args = dict(family='serif', ha='center',
                   va='top', transform=f.transFigure)

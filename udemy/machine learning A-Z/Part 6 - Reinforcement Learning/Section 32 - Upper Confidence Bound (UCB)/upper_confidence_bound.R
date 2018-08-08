@@ -19,7 +19,7 @@ for (n in 1:N) {
       delta_i = sqrt(3/2 * log(n) / numbers_of_selections[i])
       upper_bound = average_reward + delta_i
     } else {
-        upper_bound = 1e400
+      upper_bound = 1e400
     }
     if (upper_bound > max_upper_bound) {
       max_upper_bound = upper_bound
